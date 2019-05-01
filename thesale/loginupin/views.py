@@ -1,23 +1,37 @@
 from django.conf.urls import url
-
 from django.shortcuts import HttpResponse, render, redirect
 from loginupin import models
 from datetime import datetime
+from django.views.decorators.http import require_http_methods
 # Create your views here.
+
+
+@require_http_methods(["GET", "POST"])
 def loginin(request):
     if request.method == "GET":
         return render(request, 'loginin.html')
     if request.method == "POST":
         email = request.POST.get("email")
         password = request.POST.get("password")
-        result = models.users.objects.filter(user_email=email,user_password=password)
+        result = models.users.objects.filter(user_email=email, user_password=password).first()
         if result:
+            request.session['is_login'] = True
+            request.session['user_id'] = result.user_id
+            request.session['user_name'] = result.user_name
+            tk = request.session.get('user_name')
+            print(tk)
             return redirect('/loginupin/signup/')
         else:
             return render(request, 'loginin.html')
+
+
 def signup(request):
     if request.method == "GET":
-        return render(request, 'signup.html')
+        tk = request.session.get('user_name')
+        if tk:
+            return render(request, 'signup.html')
+        else:
+            return redirect('/loginin/')
     if request.method == "POST":
         name = request.POST.get("name", None)
         email = request.POST.get("email", None)
@@ -25,7 +39,7 @@ def signup(request):
         password = request.POST.get("password", None)
         if name != None and email != None and password != None and phone != None:
             models.users.objects.create(user_name=name, user_email=email, user_phone=phone, user_password=password)
-            return redirect('/')
+            return redirect('/loginin/')
         else:
             return render(request, "signup.html")
 
@@ -70,6 +84,7 @@ def showImg(request):
     :param request:
     :return:
     """
+
     imgs = models.IMG.objects.all()
     content = {
         'imgs': imgs,

@@ -4,15 +4,25 @@ from theteam import models
 # Create your views here.
 
 def listtemaer(request):
-    listteam = models.team.objects.all()
-    return render(request, 'list.html', {
-        'listteam': listteam
-    })
-
+    if request.method == "GET":
+        tk = request.session.get('user_name')
+        if tk:
+            listteam = models.team.objects.all()
+            return render(request, 'list.html', {
+            'listteam': listteam
+            })
+        else:
+            return redirect('/loginin/')
+    else:
+        return redirect('/loginin/')
 
 def publish(request):
     if request.method == "GET":
-        return render(request, "publish.html")
+        tk = request.session.get('user_name')
+        if tk:
+            return render(request, "publish.html")
+        else:
+            return redirect('/loginin/')
     if request.method == "POST":
         first = request.POST.get("first", None)
         telephone = request.POST.get("telephone", None)
@@ -31,9 +41,16 @@ def publish(request):
 
 
 def articles(request, num):
-    article = models.team.objects.filter(id=num)[0]
-    return render(request, 'articles.html', {
-        'article': article
-    })
+    if request.method == "GET":
+        tk = request.session.get('user_name')
+        if tk:
+            article = models.team.objects.filter(id=num)[0]
+            return render(request, 'articles.html', {
+            'article': article
+            })
+        else:
+            return redirect('/loginin/')
+    else:
+        return redirect('/loginin/')
 
 
