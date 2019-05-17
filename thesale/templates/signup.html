@@ -213,7 +213,8 @@
 		<div class="container"> 
 			<h3 class="w3ls-title w3ls-title1">创建你的账号</h3>  
 			<div class="login-body">
-				<form action="/signup/" method="post">
+				<form action="/loginupin/signup/" method="post">
+                    {% csrf_token %}
 					<input type="text" class="user" name="name" placeholder="输入用户名" required="">
 					<input type="text" class="user" name="email" placeholder="输入电子邮箱账号" required="">
 					<input type="text" class="user" name="phone" placeholder="输入手机号" required="">

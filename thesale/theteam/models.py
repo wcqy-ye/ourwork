@@ -18,7 +18,7 @@ class team(models.Model):
 
     class Meta:
 
-        db_table ='team'
+        db_table ='theteam_team'
 
         verbose_name ="组队"
 
@@ -26,8 +26,8 @@ class team(models.Model):
 
         # ordering = ['-createTime']
 
-        def __str__(self):
-            return self.first
+    def __str__(self):
+        return self.first
 
 
 

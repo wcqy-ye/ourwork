@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'xadmin',
     'crispy_forms',
     'haystack',
-    'theteam'
+    'theteam',
+    'thingfloat',
+    'taskout',
 ]
 
 HAYSTACK_CONNECTIONS = {

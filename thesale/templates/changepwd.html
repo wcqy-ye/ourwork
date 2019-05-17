@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/loginupin/changepwd/" method="post" >
+    {% csrf_token %}
+    <input type="password" name="pwd1" placeholder="旧密码">
+    <input type="password" name="pwd2" placeholder="新密码">
+    <button>确定修改</button>
+</form>
+<p>{{ result }}</p>
+</body>
+</html>

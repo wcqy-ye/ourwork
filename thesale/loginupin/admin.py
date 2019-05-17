@@ -35,5 +35,6 @@ class BaseSetting(object):
 
 xadmin.site.register(views.BaseAdminView, BaseSetting)
 xadmin.site.register(views.CommAdminView, GlobalSetting)
-xadmin.site.register(users,GlobalSetting)
-xadmin.site.register(Student,GlobalSetting)
+xadmin.site.register(users, GlobalSetting)
+xadmin.site.register(Student, GlobalSetting)
+xadmin.site.register(comment, GlobalSetting)
