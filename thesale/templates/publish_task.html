@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block page-main %}
+    <a style="margin-left: 700px;" href="/taskout/">回到任务列表页面</a>
+<div class="container">
+    <div style="margin-left: 475px;">
+	<div class="row">
+		<div class="span12">
+			<form class="form-horizontal" action="/taskout/publish_task/" method="post"enctype="multipart/form-data">
+				{% csrf_token %}
+                <div class="control-group">
+					 <label class="control-label" for="inputEmail">任务名称</label>
+					<div class="controls">
+						<input id="inputEmail" type="text" name="task_name"/>
+					</div>
+				</div>
+                <div class="control-group">
+					 <label class="control-label" for="inputEmail" >任务种类</label>
+					<div class="controls">
+						<input id="inputEmail" type="text" name="task_class"/>
+					</div>
+				</div>
+
+                <div class="control-group">
+					 <label class="control-label" for="inputPassword">任务具体描述</label>
+
+                    <textarea id="inputPassword"  name="task_description"></textarea>
+					</div>
+                    <input type="file" name="img">
+				<div class="control-group">
+					<div class="controls">
+						 <label class="checkbox"><input type="checkbox" /> Remember me</label> <button type="submit" class="btn">确定上传！</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+    </div>
+
+<p>{{ error }}</p>
+{% endblock %}

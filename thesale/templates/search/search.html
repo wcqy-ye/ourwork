@@ -1,14 +1,53 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<a>111</a>
+{% extends 'base.html' %}
+{% block page-main %}
 {% if query %}
     <h3>搜索结果如下：</h3>
     {% for result in page.object_list %}
-        <a href="/{{ result.object.user_id }}/">{{ result.object.user_name }}</a><br/>
+        <div class="container">
+	<div class="row">
+		<div class="span8">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+                            用户名
+						</th>
+						<th>
+							用户邮箱
+						</th>
+						<th>
+							用户电话
+						</th>
+						<th>
+							用户余额
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr class="success">
+						<td>
+							<div>{{ result.object.user_name}}</div>
+						</td>
+						<td>
+							<div>{{ result.object.user_email }}</div>
+						</td>
+						<td>
+							<div>{{ result.object.user_phone }}</div>
+						</td>
+						<td>
+							<div>{{ result.object.user_money }}</div>
+						</td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</div>
+
+
     {% empty %}
         <p>啥也没找到</p>
     {% endfor %}
@@ -21,5 +60,4 @@
         </div>
     {% endif %}
 {% endif %}
-</body>
-</html>
+{% endblock %}

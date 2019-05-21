@@ -1,18 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% for foo in listteam %}
+{% extends 'base.html' %}
+{% block page-main %}
+<a href="/theteam/publish/" >发布组队</a>
 
-    {{ foo.id }}
-    {{ foo.first }}
-    {{ foo.telephone }}
-    {{ foo.email }}
-    {{ foo.competition }}
-    {{ foo.description }}
+{% for foo in listteam %}
+      <div class="container">
+	<div class="row">
+		<div class="span8">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+                            序号
+						</th>
+						<th>
+							发起人
+						</th>
+						<th>
+							类别
+						</th>
+						<th>
+							邮箱
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr class="success">
+						<td>
+							<div><a href="/theteam/articles/{{ foo.id }}/" >{{ foo.id }}</a></div>
+						</td>
+						<td>
+							<div>{{ foo.first }}</div>
+						</td>
+						<td>
+							<div>{{ foo.category }}</div>
+						</td>
+						<td>
+							<div>{{ foo.email }}</div>
+						</td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</div>
+
 {% endfor %}
-</body>
-</html>
+{% endblock %}

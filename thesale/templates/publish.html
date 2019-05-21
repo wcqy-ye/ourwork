@@ -1,20 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<form action="/theteam/publish/" method="post">
-    <input type="text" name="first" placeholder="发起人名字" maxlength="10">
-    <input type="text"  name="telephone" placeholder="发起人电话" maxlength="10">
-    <input type="text" name="email" placeholder="邮箱 可选填">
-    <input type="text" name="competition" placeholder="比赛名称" maxlength="10">
-    <input type="text" name="teamer" placeholder="现有队员人数" maxlength="10">
-    <input type="text" name="description" placeholder="描述" maxlength="100">
-    <input type="submit" value="提交">
-    {% csrf_token %}
-</form>
+{% extends 'base.html' %}
+{% block page-main %}
+    <a style="margin-left: 700px;" href="/theteam/">回到队伍列表页面</a>
+<div class="container">
+    <div style="margin-left: 475px;">
+	<div class="row">
+		<div class="span12">
+			<form class="form-horizontal" action="/theteam/publish/" method="post"enctype="multipart/form-data">
+				{% csrf_token %}
+                <div class="control-group">
+					 <label class="control-label" for="inputEmail">发起人名字</label>
+					<div class="controls">
+						<input id="inputEmail" type="text" name="first"/>
+					</div>
+				</div>
+                <div class="control-group">
+					 <label class="control-label" for="inputEmail" >发起人电话</label>
+					<div class="controls">
+						<input id="inputEmail" type="text" name="telephone"/>
+					</div>
+				</div>
+                <div class="control-group">
+					 <label class="control-label" for="inputPassword">比赛类别</label>
+					<div class="controls">
+						<input id="inputPassword" type="text" name="category"/>
+					</div>
+				</div>
+				<div class="control-group">
+					 <label class="control-label" for="inputPassword">邮箱 可选填</label>
+					<div class="controls">
+						<input id="inputPassword" type="text" name="email"/>
+					</div>
+				</div>
+                <div class="control-group">
+					 <label class="control-label" for="inputPassword">比赛名称</label>
+					<div class="controls">
+						<input id="inputPassword" type="text" name="competition"/>
+					</div>
+				</div>
+                <div class="control-group">
+					 <label class="control-label" for="inputPassword">现有队员人数</label>
+					<div class="controls">
+						<input id="inputPassword" type="text" name="teamer"/>
+					</div>
+				</div>
+                <div class="control-group">
+					 <label class="control-label" for="inputPassword">具体描述</label>
+
+                    <textarea id="inputPassword"  name="description"></textarea>
+					</div>
+                <input type="file" name="img">
+				<div class="control-group">
+					<div class="controls">
+						 <label class="checkbox"><input type="checkbox" /> Remember me</label> <button type="submit" class="btn">确定上传！</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+    </div>
+
 <p>{{ error }}</p>
-</body>
-</html>
+{% endblock %}

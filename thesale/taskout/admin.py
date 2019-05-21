@@ -3,4 +3,5 @@ from loginupin.admin import *
 
 from .models import *
 # Register your models here.
-xadmin.site.register(task, GlobalSetting),
+xadmin.site.register(tasks, GlobalSetting),
+xadmin.site.register(tasks_img, GlobalSetting)

@@ -3,12 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+<style>
+    .x{
+       margin:10px auto;
+        height:100px;
+        width: 100px;
+    }
+    .x img{
+        height: 70px;
+        width: 70px;
+        border-radius:50%
 
+    }
+</style>
 </head>
 <body>
 
-    {% for img in imgs %}
-         <img src="/loginupin{{ img.img.url }}" />
-    {% endfor %}
+{% if imgs %}
+<div class="x"><img  src="/loginupin/media/img/{{ imgs }}" /></div>
+{% else %}
+ <p>{{ error }}</p>
+{% endif %}
+
 </body>
 </html>

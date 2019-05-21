@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block page-main %}
+<a href="/thingfloat/publish_thing/" >发布物品</a>
+{% for foo in things %}
+      <div class="container">
+	<div class="row">
+		<div class="span8">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+                            序号
+						</th>
+						<th>
+							物品发起者
+						</th>
+						<th>
+							物品类别
+						</th>
+						<th>
+							物品名字
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr class="success">
+						<td>
+                            <div><a href="/thingfloat/detail_thing/{{ foo.thing_id }}/" >{{ foo.thing_id }}</a></div>
+						</td>
+						<td>
+							<div>{{ foo.thing_publisher }}</div>
+						</td>
+						<td>
+							<div>{{ foo.thing_class }}</div>
+						</td>
+						<td>
+							<div>{{ foo.thing_name }}</div>
+						</td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</div>
+
+{% endfor %}
+{% endblock %}

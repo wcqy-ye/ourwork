@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <title>留言板</title>
-
+                    <a style="margin-left: 700px;" href="/loginupin/blank/">回到主页面</a>
         <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
     </head>
     <body>
@@ -12,8 +12,8 @@
             <thead>
                 <tr class="danger">
                     <th>留言时间</th>
+                    <th>序号</th>
                     <th>留言者</th>
-                    <th>标题</th>
                     <th>内容</th>
                 </tr>
             </thead>
@@ -34,6 +34,6 @@
                 {% endif %}
             </tbody>
         </table>
-        <a class="btn btn-xs btn-info" href="#">去留言</a>
+        <a class="btn btn-xs btn-info" href="/loginupin/tocomment/">去留言</a>
     </body>
 </html>

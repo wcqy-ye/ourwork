@@ -1,15 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<p>{{ article.first }}</p>
-<p>{{ article.telephone }}</p>
-<p>{{ article.email }}</p>
-<p>{{ article.competition }}</p>
-<p>{{ article.teamer }}</p>
-<p>{{ article.description }}</p>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block page-main %}
+    <a style="margin-left: 700px;" href="/theteam/">回到队伍列表页面</a>
+    <div class="row">
+		<div class="span8">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+                            发起人
+						</th>
+						<th>
+							联系电话
+						</th>
+						<th>
+							类别
+						</th>
+						<th>
+							邮箱
+						</th>
+                        <th>
+                            现有人数
+                        </th>
+
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr class="success">
+						<td>
+							<div>{{ article.first }}</div>
+						</td>
+						<td>
+							<div>{{ article.telephone }}</div>
+						</td>
+						<td>
+							<div>{{ article.category }}</div>
+						</td>
+						<td>
+							<div>{{ article.email }}</div>
+						</td>
+                        <td>
+							<div>{{ article.teamer }}</div>
+						</td>
+
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<p>
+				<em>具体描述</em>
+                <br>
+                <strong>{{ article.description }}sdfghtrhytuyjthrtgr</strong>
+			</p>
+            {% if imgs %}
+            <div style="left: 0px;
+        height:200px;
+        width: 200px;"><img  style="height: 200px;
+        width: 200px;
+        border-radius:50%;margin-left: 700px;" src="/loginupin/media/img2/{{ imgs }}" /></div>
+            {% else %}
+            <p>{{ error }}</p>
+            {% endif %}
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -37,3 +37,4 @@ from xadmin import views
 # xadmin.site.register(views.CommAdminView, GlobalSetting)
 # # xadmin.site.register(,GlobalSetting)
 xadmin.site.register(team, GlobalSetting)
+xadmin.site.register(teams_img, GlobalSetting)

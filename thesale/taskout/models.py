@@ -2,7 +2,17 @@ from django.db import models
 
 # Create your models here.
 
-class task(models.Model):
+
+
+class tasks_img(models.Model):
+    img = models.ImageField(upload_to='img1')
+    name = models.CharField(max_length=20)
+    img_id = models.IntegerField(primary_key=True)
+    def __str__(self):
+        return self.name
+
+
+class tasks(models.Model):
     task_id = models.AutoField(primary_key=True, verbose_name="任务序号")
     task_class = models.CharField(max_length=20, verbose_name="任务类别")
     task_name = models.CharField(max_length=200, verbose_name="任务名称")

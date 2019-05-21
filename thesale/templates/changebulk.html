@@ -1,16 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<form action="/loginupin/changebulk/" method="post" >
-    {% csrf_token %}
-    <input type="text" name="name" placeholder="用户名">
-    <input type="number" name="phone" placeholder="电话">
-    <button>确定修改</button>
-</form>
+{% extends 'base.html' %}
+{% block page-main %}
+        <a style="margin-left: 700px;" href="/loginupin/self/">回到个人页面</a>
+    <div class="container">
+    <div style="margin-left: 475px;">
+	<div class="row">
+		<div class="span12">
+			<form class="form-horizontal" action="/loginupin/changebulk/" method="post">
+				{% csrf_token %}
+                <div class="control-group">
+					 <label class="control-label" for="inputEmail">用户名</label>
+					<div class="controls">
+						<input id="inputEmail" type="password" name="name"/>
+					</div>
+				</div>
+                <div class="control-group">
+					 <label class="control-label" for="inputEmail" name="phone">电话</label>
+					<div class="controls">
+						<input id="inputEmail" type="text" />
+					</div>
+				</div>
+				<div class="control-group">
+					 <label class="control-label" for="inputPassword">邮箱</label>
+					<div class="controls">
+						<input id="inputPassword" type="password" name="email"/>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						 <label class="checkbox"><input type="checkbox" /> Remember me</label> <button type="submit" class="btn">确定更改</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+    </div>
+
+
 <p>{{ result }}</p>
-</body>
-</html>
+{% endblock %}

@@ -20,7 +20,7 @@ def loginin(request):
             request.session['user_name'] = result.user_name
             tk = request.session.get('user_name')
             print(tk)
-            return redirect('/loginupin/signup/')
+            return redirect('/loginupin/blank/')
         else:
             return render(request, 'loginin.html')
 
@@ -52,40 +52,48 @@ def blank(request):
 
 @require_http_methods(["GET", "POST"])
 def self(request):
-    if request.method == 'GET':
         tk = request.session.get('user_name')
         if tk:
-            return render(request, "self.html")
-        else:
-            return redirect('/loginupin/')
-    else:
-        print(request.FILES.get('img').name)
-        new_img = models.IMG(
-            img=request.FILES.get('img'),
-            name=request.FILES.get('img').name
-        )
-        new_img.save()
-    return redirect('/loginupin/show/')
+            if request.method == 'GET':
+                tk = request.session.get('user_id')
+                user = models.users.objects.get(user_id=tk)
+                print(user.user_name)
+                print(user.user_email)
+                print(user.user_money)
+                try:
+                    x = request.session.get('user_id')
+                    imgs = models.IMG.objects.get(img_id=x)
+                    imgs = {
+                        'imgs': imgs,
+                        'user': user,
+                    }
+                    return render(request, 'self.html', imgs)
+                except:
+                    error = "没有头像哦!"
+                    error = {
+                        'error': error,
+                        'user': user,
+                    }
+                    return render(request, 'self.html', error, {'user': user})
+            else:
+                x = request.session.get('user_id')
+                tk = models.IMG.objects.get(img_id=x)
+                if tk:
+                    tk.img = request.FILES.get('img')
+                    tk.name = request.FILES.get('img').name
+                    print(request.session.get('user_id'), request.FILES.get('img'), request.FILES.get('img').name)
+                    tk.save()
+                else:
+                    print(request.FILES.get('img').name)
+                    new_img = models.IMG(
+                        img_id=request.session.get('user_id'),
+                        img=request.FILES.get('img'),
+                        name=request.FILES.get('img').name
+                    )
+                    new_img.save()
 
-
-@require_http_methods(["GET"])
-def showImg(request):
-    tk = request.session.get('user_name')
-    if tk:
-    #"""
-   # 图片显示
-   #:param request:
-   # :return:
-   # """
-        imgs = models.IMG.objects.all()
-        content = {
-        'imgs': imgs,
-        }
-        for i in imgs:
-            print(i.img.url)
-        return render(request, 'show.html', content)
-    else:
-        redirect('/loginupin/')
+                return redirect('/loginupin/self/')
+        return redirect('/loginupin/')
 
 
 @require_http_methods(["GET", "POST"])
@@ -99,6 +107,9 @@ def changepwd(request):
     else:
         pwd1 = request.POST.get('pwd1')
         pwd2 = request.POST.get('pwd2')
+        pwd3 = request.POST.get('pwd3')
+        if pwd2 != pwd3:
+            return render(request, 'changepwd.html', {'result': '确认两次新密码相同!'})
         number = request.session.get('user_id')
         print(pwd1, pwd2, number)
         try:
@@ -118,8 +129,9 @@ def changebulk(request):
     if tk:
         name = request.POST.get('name')
         phone = request.POST.get('phone')
+        email = request.POST.get('email')
         number = request.session.get('user_id')
-        print(name, phone, number)
+        print(name, phone, email, number)
     else:
         return redirect('/loginupin/')
     if request.method == "GET":
@@ -129,6 +141,7 @@ def changebulk(request):
             obj = models.users.objects.get(user_id=number)
             obj.user_name = name
             obj.user_phone = phone
+            obj.user_email = email
             obj.save()
             result = '修改成功！'
             return render(request, "changebulk.html", {'result': result})
@@ -164,11 +177,9 @@ def tocomment(request):
             content = request.POST.get('content')
             print(content)
             x = models.comment()
-            x.comment_id = request.session.get('user_id')
             x.comment_or = request.session.get('user_name')
             x.comment_time = datetime.now()
             print(x.comment_time)
-            print(1)
             x.comments = content
             #x = models.comment(comment_id=comment_id,comment_or=comment_or,comment_time=comment_time,comments=comments)
             print(x)

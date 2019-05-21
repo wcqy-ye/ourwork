@@ -1,6 +1,6 @@
 {{ object.user_id }}
 {{ object.user_name }}
 {{ object.user_phone }}
-{{ object.user_password }}
+
 {{ object.user_email }}
 

@@ -49,12 +49,12 @@ class Student(models.Model):
 class IMG(models.Model):
     img = models.ImageField(upload_to='img')
     name = models.CharField(max_length=20)
-
+    img_id = models.IntegerField(primary_key=True)
     def __str__(self):
         return self.name
 
 class comment(models.Model):
-    comment_id = models.IntegerField(primary_key=True, max_length=100,verbose_name='评论数')
+    comment_id = models.AutoField(primary_key=True, max_length=100, verbose_name='评论数')
     comment_or = models.CharField(max_length=50, verbose_name='评论者')
     comments = models.CharField(max_length=100, verbose_name='评论')
     comment_time = models.DateField(verbose_name='评论时间')

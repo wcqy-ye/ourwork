@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block page-main %}
+
+<a href="/taskout/publish_task/" >发布任务</a>
+{% for task in tasks %}
+      <div class="container">
+	<div class="row">
+		<div class="span8">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+                            序号
+						</th>
+						<th>
+							任务发起者
+						</th>
+						<th>
+							任务类别
+						</th>
+						<th>
+							任务名字
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr class="success">
+						<td>
+                            <div><a href="/taskout/detail_task/{{ task.task_id }}/" >{{ task.task_id }}</a></div>
+
+						</td>
+						<td>
+							<div>{{ task.task_publisher }}</div>
+						</td>
+						<td>
+							<div>{{ task.task_class }}</div>
+						</td>
+						<td>
+							<div>{{ task.task_name }}</div>
+						</td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</div>
+
+{% endfor %}
+{% endblock %}

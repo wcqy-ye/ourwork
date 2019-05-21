@@ -1,16 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<form action="/loginupin/changepwd/" method="post" >
-    {% csrf_token %}
-    <input type="password" name="pwd1" placeholder="旧密码">
-    <input type="password" name="pwd2" placeholder="新密码">
-    <button>确定修改</button>
-</form>
-<p>{{ result }}</p>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block page-main %}
+    <a style="margin-left: 700px;" href="/loginupin/self/">回到个人页面</a>
+    <div class="container">
+    <div style="margin-left: 475px;">
+	<div class="row">
+		<div class="span12">
+			<form class="form-horizontal" action="/loginupin/changepwd/" method="post">
+				{% csrf_token %}
+                <div class="control-group">
+					 <label class="control-label" for="inputEmail">旧密码</label>
+					<div class="controls">
+						<input id="inputEmail" type="password" name="pwd1"/>
+					</div>
+				</div>
+                <div class="control-group">
+					 <label class="control-label" for="inputEmail" >新密码</label>
+					<div class="controls">
+						<input id="inputEmail" type="text" name="pwd2" />
+					</div>
+				</div>
+				<div class="control-group">
+					 <label class="control-label" for="inputPassword">新密码</label>
+					<div class="controls">
+						<input id="inputPassword" type="password" name="pwd3"/>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						 <label class="checkbox"><input type="checkbox" /> Remember me</label> <button type="submit" class="btn">确定更改</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+    </div>
+
+<p id="result">{{ result }}</p>
+{% endblock %}

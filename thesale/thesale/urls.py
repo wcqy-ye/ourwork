@@ -24,10 +24,11 @@ import xadmin
 import haystack
 
 urlpatterns = [
+    path('',include('loginupin.urls', namespace='loginupin')),
     path('xadmin/', xadmin.site.urls),
     path('loginupin/', include('loginupin.urls', namespace='loginupin')),
     url(r'^search/', include('haystack.urls')),
     path('thingfloat/',include('thingfloat.urls')),
-    path('taskwork/', include('taskout.urls')),
+    path('taskout/', include('taskout.urls')),
     path('theteam/', include('theteam.urls', namespace='theteam')) # 引入blog应用的url配置
 ]

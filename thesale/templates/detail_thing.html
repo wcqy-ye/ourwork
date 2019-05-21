@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block page-main %}
+    <a style="margin-left: 700px;" href="/thingfloat/">回到物品列表页面</a>
+    <div class="row">
+		<div class="span8">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+                            序号
+						</th>
+						<th>
+							物品发起者
+						</th>
+						<th>
+							物品类别
+						</th>
+						<th>
+							物品名字
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr class="success">
+						<td>
+							<div><a href="/thingfloat/detail_thing/{{ thing.thing_id }}/" >{{ thing.thing_id }}</a></div>
+						</td>
+						<td>
+							<div>{{ thing.thing_publisher }}</div>
+						</td>
+						<td>
+							<div>{{ thing.thing_class }}</div>
+						</td>
+						<td>
+							<div>{{ thing.thing_name }}</div>
+						</td>
+					</tr>
+
+
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<p>
+				<em>具体描述</em>
+                <br>
+                <strong>{{ thing.thing_description }}</strong>
+
+			</p>
+            {% if imgs %}
+            <div style="left: 0px;
+        height:200px;
+        width: 200px;"><img  style="height: 200px;
+        width: 200px;
+        border-radius:50%;margin-left: 700px;" src="/loginupin/media/img3/{{ imgs }}" /></div>
+            {% else %}
+            <p>{{ error }}</p>
+            {% endif %}
+		</div>
+	</div>
+</div>
+
+{% endblock %}
